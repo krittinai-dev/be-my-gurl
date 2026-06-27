@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Prompt:wght@300;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700;800;900&family=Caveat:wght@400;600;700&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -7,18 +7,20 @@
 }
 
 :root {
-  --pink: #ff6b8a;
-  --pink-light: #ffb3c1;
-  --pink-pale: #fff0f3;
-  --rose: #e91e63;
-  --purple: #9c27b0;
-  --white: #ffffff;
-  --text-dark: #3d1a24;
+  --black: #0D0D0D;
+  --red: #D4163C;
+  --red-dark: #A81030;
+  --gray-100: #F7F7F7;
+  --gray-200: #EBEBEB;
+  --gray-400: #AAAAAA;
+  --gray-600: #666666;
+  --white: #FFFFFF;
 }
 
 body {
-  font-family: 'Sarabun', sans-serif;
-  background: linear-gradient(135deg, #ffe0e6 0%, #fce4ec 50%, #f8bbd0 100%);
+  font-family: 'Kanit', sans-serif;
+  background: var(--white);
+  color: var(--black);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -27,7 +29,34 @@ body {
   position: relative;
 }
 
-/* ============ HEARTS BACKGROUND ============ */
+/* ============ DOODLE DECORATION ============ */
+body::before {
+  content: '';
+  position: fixed;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M100 30 C60 30 30 55 30 85 C30 130 100 165 100 165 C100 165 170 130 170 85 C170 55 140 30 100 30Z' fill='none' stroke='%23FFCCD5' stroke-width='3'/%3E%3C/svg%3E") no-repeat center;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -60px;
+  left: -60px;
+  width: 240px;
+  height: 240px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='80' fill='none' stroke='%23FFCCD5' stroke-width='2' stroke-dasharray='8 6'/%3E%3C/svg%3E") no-repeat center;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ HEARTS ============ */
 #hearts-container {
   position: fixed;
   top: 0; left: 0;
@@ -40,14 +69,14 @@ body {
 .floating-heart {
   position: absolute;
   top: -60px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   animation: fall linear infinite;
-  opacity: 0.7;
+  opacity: 0.3;
   user-select: none;
 }
 
 @keyframes fall {
-  0%   { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0.35; }
   100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 
@@ -60,7 +89,7 @@ body {
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 24px 20px;
 }
 
 .page.active {
@@ -69,106 +98,278 @@ body {
 
 /* ============ CARD ============ */
 .card {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  border-radius: 28px;
-  padding: 48px 40px;
-  max-width: 520px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 24px;
+  padding: 40px 32px;
+  max-width: 480px;
   width: 100%;
   text-align: center;
-  box-shadow:
-    0 20px 60px rgba(255, 107, 138, 0.25),
-    0 4px 16px rgba(255, 107, 138, 0.12);
-  animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+  animation: slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @keyframes slideUp {
-  from { transform: translateY(40px); opacity: 0; }
+  from { transform: translateY(32px); opacity: 0; }
   to   { transform: translateY(0);    opacity: 1; }
 }
 
-.emoji-big {
-  font-size: 4rem;
-  margin-bottom: 20px;
+/* ============ PAGE 1: INTRO ============ */
+.intro-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--gray-400);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.meme-roses {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid var(--gray-200);
+  margin: 0 auto 20px;
   display: block;
-  animation: bounce 2s ease-in-out infinite;
 }
 
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-10px); }
+#intro-text {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--black);
+  line-height: 1.2;
+  margin-bottom: 8px;
+  min-height: 1.4em;
+  letter-spacing: -0.01em;
 }
 
-h1 {
-  font-family: 'Prompt', sans-serif;
-  font-size: 1.8rem;
-  color: var(--text-dark);
-  line-height: 1.5;
-  margin-bottom: 28px;
-  min-height: 2.4em;
-}
-
-h2 {
-  font-family: 'Prompt', sans-serif;
-  font-size: 1.5rem;
-  color: var(--rose);
-  margin-bottom: 24px;
+.intro-sub {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--gray-600);
+  margin-bottom: 32px;
 }
 
 /* ============ TYPEWRITER ============ */
 .typewriter::after {
   content: '|';
   animation: blink 0.7s step-end infinite;
-  color: var(--pink);
+  color: var(--red);
 }
 
 @keyframes blink {
   50% { opacity: 0; }
 }
 
+/* ============ PAGE 2: LOVE LETTER ============ */
+.letter-envelope {
+  position: relative;
+  width: 260px;
+  height: 175px;
+  cursor: pointer;
+  animation: slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.25s;
+}
 
-/* ============ QUESTION CARD ============ */
-.question-card h1.question-text {
-  font-size: 2.2rem;
-  color: var(--rose);
-  margin-bottom: 36px;
+.letter-envelope:hover {
+  transform: translateY(-4px);
+}
+
+.envelope-body {
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 6px 6px 12px 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 130px solid transparent;
+  border-right: 130px solid transparent;
+  border-top: 96px solid var(--gray-100);
+  z-index: 2;
+  transform-origin: top center;
+  transition: transform 0.55s ease;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.06));
+}
+
+.letter-envelope.opening .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope-heart {
+  font-size: 2.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+.open-hint {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--gray-400);
+  text-align: center;
+  animation: blink 1.4s step-end infinite;
+}
+
+/* Letter Sheet */
+.letter-sheet {
+  display: none;
+  width: 100%;
+  max-width: 460px;
+  animation: letterUnfold 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes letterUnfold {
+  from { transform: scaleY(0.05) translateY(-40px); opacity: 0; }
+  to   { transform: scaleY(1) translateY(0);        opacity: 1; }
+}
+
+.letter-inner {
+  background:
+    repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      #F0F0F0 31px,
+      #F0F0F0 32px
+    ),
+    #FFFFFF;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 16px;
+  padding: 32px 32px 28px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.letter-inner::before {
+  content: '';
+  position: absolute;
+  left: 52px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: #FFD6DC;
+}
+
+.letter-lines {
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: var(--black);
+  line-height: 2rem;
+  margin-bottom: 20px;
+  padding-left: 16px;
+}
+
+.letter-line {
+  display: block;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.letter-line.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.letter-sig {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--gray-600);
+  text-align: right;
+  margin-bottom: 24px;
+  padding-right: 4px;
+  line-height: 1.6;
+}
+
+.sig-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--red);
+}
+
+.meme-letter {
+  float: right;
+  margin: 0 0 12px 14px;
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* ============ PAGE 3: QUESTION ============ */
+.question-card {
+  text-align: left;
+}
+
+.question-context {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--gray-400);
+  margin-bottom: 14px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.question-text {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--black);
+  line-height: 1.15;
+  margin-bottom: 32px;
+  letter-spacing: -0.02em;
+  text-align: left;
 }
 
 .btn-group {
   display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 12px;
   position: relative;
   min-height: 60px;
 }
 
 .hint {
-  margin-top: 16px;
-  font-size: 0.9rem;
-  color: #bbb;
+  margin-top: 12px;
+  font-size: 0.88rem;
+  color: var(--gray-400);
   min-height: 1.4em;
-  transition: all 0.3s;
+  font-weight: 400;
 }
 
 /* ============ BUTTONS ============ */
 .btn-primary {
-  background: linear-gradient(135deg, var(--pink), var(--rose));
-  color: white;
+  background: var(--black);
+  color: var(--white);
   border: none;
-  padding: 14px 36px;
-  border-radius: 50px;
-  font-size: 1.1rem;
-  font-family: 'Sarabun', sans-serif;
-  font-weight: 600;
+  padding: 16px 36px;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.35);
+  transition: background 0.18s, transform 0.18s;
+  letter-spacing: 0.02em;
+  width: 100%;
+  margin-top: 24px;
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(233, 30, 99, 0.45);
+  background: #222;
+  transform: translateY(-2px);
 }
 
 .btn-primary:active {
@@ -176,50 +377,67 @@ h2 {
 }
 
 .btn-yes {
-  background: linear-gradient(135deg, #ff6b8a, #e91e63);
-  color: white;
+  background: var(--black);
+  color: var(--white);
   border: none;
-  padding: 16px 40px;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  font-family: 'Sarabun', sans-serif;
-  font-weight: 700;
+  padding: 18px 40px;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 800;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 6px 24px rgba(233, 30, 99, 0.4);
-  animation: pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50%       { transform: scale(1.05); }
+  transition: background 0.18s, transform 0.18s;
+  width: 100%;
+  letter-spacing: 0.01em;
 }
 
 .btn-yes:hover {
-  transform: scale(1.1);
-  box-shadow: 0 10px 32px rgba(233, 30, 99, 0.55);
-  animation: none;
+  background: var(--red);
+  transform: translateY(-2px);
 }
 
 .btn-no {
-  background: transparent;
-  color: #bbb;
-  border: 2px solid #ddd;
-  padding: 14px 28px;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-family: 'Sarabun', sans-serif;
+  background: var(--white);
+  color: var(--gray-400);
+  border: 1.5px solid var(--gray-200);
+  padding: 15px 28px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.18s;
+  width: 100%;
   position: relative;
 }
 
 .btn-no:hover {
-  border-color: #ccc;
-  color: #999;
+  border-color: var(--gray-400);
+  color: var(--gray-600);
 }
 
-/* ============ CELEBRATION ============ */
+/* ============ SCREAM MEME ============ */
+.meme-scream {
+  position: fixed;
+  bottom: -180px;
+  right: 20px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 3px solid var(--gray-200);
+  object-fit: cover;
+  object-position: center top;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+  z-index: 500;
+  transition: bottom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.meme-scream.show {
+  bottom: 20px;
+}
+
+/* ============ PAGE 4: CELEBRATION ============ */
 #confetti-container {
   position: fixed;
   top: 0; left: 0;
@@ -242,267 +460,68 @@ h2 {
   100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
 }
 
-.celebrate-card {
-  animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes pop {
-  from { transform: scale(0.5); opacity: 0; }
-  to   { transform: scale(1);   opacity: 1; }
-}
-
-.celebrate-emoji {
-  animation: spin-bounce 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes spin-bounce {
-  from { transform: rotate(-180deg) scale(0); }
-  to   { transform: rotate(0deg) scale(1); }
-}
-
-.celebrate-card h1 {
-  color: var(--rose);
-  font-size: 2.4rem;
-  margin-bottom: 16px;
-}
-
-.celebrate-text {
-  font-size: 1.3rem;
-  color: var(--text-dark);
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.celebrate-sub {
-  font-size: 1rem;
-  color: #888;
-  margin-bottom: 24px;
-}
-
-.date-box {
-  background: linear-gradient(135deg, #fff0f3, #fce4ec);
-  border: 2px solid var(--pink-light);
-  border-radius: 16px;
-  padding: 16px 24px;
-  font-size: 1.1rem;
-  color: var(--rose);
-  font-weight: 600;
-  margin-bottom: 28px;
-}
-
-/* ============ LOVE LETTER ============ */
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');
-
-/* Envelope */
-.letter-envelope {
-  position: relative;
-  width: 260px;
-  height: 180px;
-  cursor: pointer;
-  animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  transition: transform 0.3s;
-}
-
-.letter-envelope:hover {
-  transform: scale(1.05);
-}
-
-.envelope-body {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(145deg, #fff0f3, #fce4ec);
-  border-radius: 8px 8px 12px 12px;
-  border: 2px solid var(--pink-light);
-  box-shadow: 0 12px 40px rgba(255,107,138,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  bottom: 0;
-}
-
-.envelope-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 130px solid transparent;
-  border-right: 130px solid transparent;
-  border-top: 100px solid #ffb3c1;
-  z-index: 2;
-  transform-origin: top center;
-  transition: transform 0.6s ease;
-  filter: drop-shadow(0 2px 4px rgba(255,107,138,0.2));
-}
-
-.letter-envelope.opening .envelope-flap {
-  transform: rotateX(180deg);
-}
-
-.envelope-heart {
-  font-size: 3rem;
-  animation: bounce 2s ease-in-out infinite;
-  position: relative;
-  z-index: 1;
-}
-
-.open-hint {
-  margin-top: 16px;
-  font-size: 0.95rem;
-  color: var(--pink);
-  font-weight: 600;
-  animation: blink 1.2s step-end infinite;
-  text-align: center;
-}
-
-/* Letter Sheet */
-.letter-sheet {
-  display: none;
-  width: 100%;
-  max-width: 480px;
-  animation: letterUnfold 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes letterUnfold {
-  from { transform: scaleY(0.1) translateY(-60px); opacity: 0; }
-  to   { transform: scaleY(1) translateY(0);       opacity: 1; }
-}
-
-.letter-inner {
-  background:
-    repeating-linear-gradient(
-      transparent,
-      transparent 31px,
-      #fce4ec 31px,
-      #fce4ec 32px
-    ),
-    linear-gradient(to bottom right, #fffaf9, #fff8fb);
-  border-radius: 12px;
-  padding: 32px 36px 28px;
-  box-shadow:
-    0 20px 60px rgba(255,107,138,0.2),
-    inset 0 0 0 1px rgba(255,182,193,0.4);
-  position: relative;
-}
-
-.letter-inner::before {
-  content: '';
-  position: absolute;
-  left: 56px;
-  top: 0; bottom: 0;
-  width: 1px;
-  background: rgba(255,182,193,0.5);
-}
-
-.letter-lines {
-  font-family: 'Caveat', cursive;
-  font-size: 1.25rem;
-  color: #5a2d3a;
-  line-height: 2rem;
-  margin-bottom: 24px;
-  min-height: 100px;
-  padding-left: 16px;
-}
-
-.letter-line {
-  display: block;
-  opacity: 0;
-  transform: translateX(-8px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.letter-line.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.letter-sig {
-  font-family: 'Caveat', cursive;
-  font-size: 1.1rem;
-  color: #8b3a4a;
-  text-align: right;
-  margin-bottom: 24px;
-  padding-right: 8px;
-  line-height: 1.6;
-}
-
-.sig-name {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--rose);
-}
-
-.meme-letter {
-  float: right;
-  margin: 0 0 12px 16px;
-  width: 100px;
-  height: 100px;
-  shape-outside: circle();
-}
-
-/* ============ MEME IMAGES ============ */
-.meme-img {
-  border-radius: 20px;
-  object-fit: cover;
-  display: block;
-  margin: 0 auto 20px;
-}
-
-.meme-roses {
-  width: 180px;
-  height: 180px;
-  border: 4px solid var(--pink-light);
-  box-shadow: 0 8px 24px rgba(255, 107, 138, 0.3);
-  animation: slideUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.meme-shy {
-  width: 140px;
-  height: 140px;
-  border: 4px solid var(--pink-light);
-  box-shadow: 0 8px 24px rgba(255, 107, 138, 0.25);
-  animation: bounce 2.5s ease-in-out infinite;
-}
-
-/* Scream meme — fixed position, hidden by default */
-.meme-scream {
-  position: fixed;
-  bottom: -220px;
-  right: 20px;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  border: 4px solid #ff6b8a;
-  object-fit: cover;
-  object-position: center top;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  z-index: 500;
-  transition: bottom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  pointer-events: none;
-}
-
-.meme-scream.show {
-  bottom: 20px;
-}
-
-/* Love explosion background */
 .meme-bg-celebrate {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.18;
+  opacity: 0.08;
   z-index: 6;
   pointer-events: none;
-  filter: blur(2px) saturate(1.5);
-  animation: bgPulse 3s ease-in-out infinite;
+  filter: blur(4px) grayscale(30%);
 }
 
-@keyframes bgPulse {
-  0%, 100% { opacity: 0.15; transform: scale(1); }
-  50%       { opacity: 0.25; transform: scale(1.05); }
+.celebrate-card {
+  animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-align: left;
+}
+
+@keyframes pop {
+  from { transform: scale(0.85); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+.celebrate-emoji-row {
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+  display: block;
+  letter-spacing: 4px;
+}
+
+.celebrate-card h1 {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--black);
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.celebrate-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gray-600);
+  margin-bottom: 6px;
+}
+
+.celebrate-sub {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--gray-400);
+  margin-bottom: 24px;
+}
+
+.date-box {
+  background: var(--gray-100);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 24px;
+  display: inline-block;
 }
 
 /* ============ YOUTUBE PLAYER ============ */
@@ -521,49 +540,36 @@ h2 {
   bottom: 20px;
   left: 20px;
   z-index: 1000;
-  background: rgba(255,255,255,0.85);
-  border: 2px solid var(--pink-light);
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
   border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  font-size: 1.4rem;
+  width: 44px;
+  height: 44px;
+  font-size: 1.2rem;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(255,107,138,0.3);
-  transition: transform 0.2s;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  transition: transform 0.18s;
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
 }
 
 #music-toggle:hover {
-  transform: scale(1.1);
-}
-
-/* ============ QUESTION CONTEXT ============ */
-.question-context {
-  font-size: 0.95rem;
-  color: #999;
-  margin-bottom: 12px;
-  line-height: 1.6;
+  transform: scale(1.08);
 }
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 480px) {
   .card {
-    padding: 36px 24px;
+    padding: 32px 24px;
+    border-radius: 20px;
   }
 
-  h1 {
-    font-size: 1.5rem;
+  #intro-text, .question-text {
+    font-size: 2rem;
   }
 
-  .question-card h1.question-text {
-    font-size: 1.8rem;
-  }
-
-  .btn-yes {
-    padding: 14px 32px;
-    font-size: 1.1rem;
+  .celebrate-card h1 {
+    font-size: 2rem;
   }
 }
