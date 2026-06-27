@@ -108,9 +108,11 @@ document.getElementById('btn-next-reasons').addEventListener('click', () => {
 const btnNo = document.getElementById('btn-no');
 const btnYes = document.getElementById('btn-yes');
 const hintEl = document.getElementById('no-hint');
+const memeScream = document.getElementById('meme-scream');
 let noCount = 0;
+let screamTimeout = null;
 
-btnNo.addEventListener('mouseover', () => {
+function runNoButton() {
   noCount++;
   const msg = CONFIG.noEscapeMessages[Math.min(noCount - 1, CONFIG.noEscapeMessages.length - 1)];
   hintEl.textContent = msg;
@@ -126,7 +128,14 @@ btnNo.addEventListener('mouseover', () => {
   btnNo.style.top = randomY + 'px';
   btnNo.style.transition = 'left 0.25s ease, top 0.25s ease';
   btnNo.style.zIndex = '999';
-});
+
+  // Show scream meme
+  memeScream.classList.add('show');
+  if (screamTimeout) clearTimeout(screamTimeout);
+  screamTimeout = setTimeout(() => memeScream.classList.remove('show'), 1800);
+}
+
+btnNo.addEventListener('mouseover', runNoButton);
 
 // Touch support — move button on touchstart
 btnNo.addEventListener('touchstart', (e) => {
@@ -145,6 +154,11 @@ btnNo.addEventListener('touchstart', (e) => {
   btnNo.style.top = randomY + 'px';
   btnNo.style.transition = 'left 0.25s ease, top 0.25s ease';
   btnNo.style.zIndex = '999';
+
+  // Show scream meme
+  memeScream.classList.add('show');
+  if (screamTimeout) clearTimeout(screamTimeout);
+  screamTimeout = setTimeout(() => memeScream.classList.remove('show'), 1800);
 }, { passive: false });
 
 btnYes.addEventListener('click', () => {
@@ -195,6 +209,7 @@ document.getElementById('btn-restart').addEventListener('click', () => {
   btnNo.style.left = '';
   btnNo.style.top = '';
   hintEl.textContent = '';
+  memeScream.classList.remove('show');
   document.getElementById('confetti-container').innerHTML = '';
   showPage('page-intro');
   startTypewriter('intro-text', CONFIG.introText);
