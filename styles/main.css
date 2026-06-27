@@ -131,30 +131,38 @@ body::after {
   max-width: 480px;
 }
 
+.site-badge {
+  display: inline-block;
+  background: var(--pink-pale);
+  border: 1.5px solid #FFB3D9;
+  color: var(--pink);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 5px 14px;
+  border-radius: 50px;
+  margin-bottom: 14px;
+}
+
 .site-title {
-  font-size: 3.4rem;
+  font-size: 4rem;
   font-weight: 900;
   letter-spacing: -0.03em;
   color: var(--black);
   margin-bottom: 20px;
   text-align: center;
-  line-height: 1;
+  line-height: 0.95;
 }
 
 .site-title span {
-  color: var(--pink);
-  position: relative;
-  display: inline-block;
-}
-
-.site-title span::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  bottom: -4px;
-  height: 4px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, var(--pink), var(--pink-mid));
+  display: block;
+  font-size: 5.2rem;
+  font-style: italic;
+  background: linear-gradient(135deg, #E9148A 0%, #FF3CAC 45%, #9C27B0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
 }
 
 .intro-label {
