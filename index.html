@@ -9,9 +9,27 @@
 <body>
   <div id="hearts-container"></div>
 
-  <!-- YouTube Music Player (hidden, loaded lazily on tap) -->
-  <div id="yt-player-wrap"></div>
-  <button id="music-toggle" title="แตะเพื่อเปิดเพลง">🎵</button>
+  <!-- Music Bottom Sheet -->
+  <div id="music-overlay" class="music-overlay"></div>
+  <div id="music-sheet" class="music-sheet">
+    <div class="music-sheet-handle"></div>
+    <div class="music-sheet-header">
+      <div>
+        <p class="music-label">🎵 เพลงประกอบ</p>
+        <p class="music-title">กดเล่นได้เลย</p>
+      </div>
+      <button id="music-close" class="music-close">✕</button>
+    </div>
+    <div class="music-embed-wrap">
+      <iframe id="yt-player"
+        src="https://www.youtube.com/embed/ytVyf_82lC0?loop=1&playlist=ytVyf_82lC0&rel=0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        frameborder="0">
+      </iframe>
+    </div>
+  </div>
+  <button id="music-toggle" title="เปิดเพลง">🎵</button>
 
   <!-- Page 1: Intro -->
   <section id="page-intro" class="page active">

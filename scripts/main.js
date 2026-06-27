@@ -15,34 +15,27 @@ const CONFIG = {
 };
 
 // ============================================================
-// YOUTUBE MUSIC — โหลด iframe ตอน user แตะเพื่อแก้ autoplay block
+// MUSIC BOTTOM SHEET
 // ============================================================
-let musicPlaying = false;
-const musicBtn = document.getElementById('music-toggle');
+const musicBtn     = document.getElementById('music-toggle');
+const musicSheet   = document.getElementById('music-sheet');
+const musicOverlay = document.getElementById('music-overlay');
+const musicClose   = document.getElementById('music-close');
 
-function startMusic() {
-  const wrap = document.getElementById('yt-player-wrap');
-  wrap.innerHTML = '';
-  const iframe = document.createElement('iframe');
-  iframe.src = 'https://www.youtube.com/embed/ytVyf_82lC0?autoplay=1&loop=1&playlist=ytVyf_82lC0&controls=0';
-  iframe.setAttribute('allow', 'autoplay; encrypted-media');
-  iframe.frameBorder = '0';
-  wrap.appendChild(iframe);
-  musicPlaying = true;
-  musicBtn.textContent = '🔇';
-  musicBtn.title = 'ปิดเพลง';
+function openMusicSheet() {
+  musicSheet.classList.add('open');
+  musicOverlay.classList.add('show');
+  musicBtn.innerHTML = '🎵 กำลังเล่น';
 }
 
-function stopMusic() {
-  document.getElementById('yt-player-wrap').innerHTML = '';
-  musicPlaying = false;
-  musicBtn.textContent = '🎵';
-  musicBtn.title = 'เปิดเพลง';
+function closeMusicSheet() {
+  musicSheet.classList.remove('open');
+  musicOverlay.classList.remove('show');
 }
 
-musicBtn.addEventListener('click', () => {
-  if (!musicPlaying) startMusic(); else stopMusic();
-});
+musicBtn.addEventListener('click', openMusicSheet);
+musicClose.addEventListener('click', closeMusicSheet);
+musicOverlay.addEventListener('click', closeMusicSheet);
 
 // ============================================================
 // HEARTS — หัวใจปลิว
