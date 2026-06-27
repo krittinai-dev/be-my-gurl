@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ปลื้ม — จะเป็นแฟนผมไหม? 💕</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <div id="hearts-container"></div>
+
+  <!-- Page 1: Intro -->
+  <section id="page-intro" class="page active">
+    <div class="card">
+      <div class="emoji-big">💌</div>
+      <h1 class="typewriter" id="intro-text"></h1>
+      <button class="btn-primary" id="btn-next-intro">ต่อไป →</button>
+    </div>
+  </section>
+
+  <!-- Page 2: Reasons -->
+  <section id="page-reasons" class="page">
+    <div class="card">
+      <h2>เหตุผลที่ผมชอบปลื้ม</h2>
+      <ul class="reasons-list" id="reasons-list"></ul>
+      <button class="btn-primary" id="btn-next-reasons">ต่อไป →</button>
+    </div>
+  </section>
+
+  <!-- Page 3: The Question -->
+  <section id="page-question" class="page">
+    <div class="card question-card">
+      <div class="emoji-big">🌹</div>
+      <h1 class="question-text">ปลื้ม<br/>จะเป็นแฟนผมไหม?</h1>
+      <div class="btn-group">
+        <button class="btn-yes" id="btn-yes">ใช่!! 💕</button>
+        <button class="btn-no" id="btn-no">ไม่ใช่</button>
+      </div>
+      <p class="hint" id="no-hint"></p>
+    </div>
+  </section>
+
+  <!-- Page 4: Celebration -->
+  <section id="page-celebrate" class="page">
+    <div id="confetti-container"></div>
+    <div class="card celebrate-card">
+      <div class="emoji-big celebrate-emoji">🎉</div>
+      <h1>ยินดีด้วย!! 🎊</h1>
+      <p class="celebrate-text">เราเป็นแฟนกันแล้วนะ ปลื้ม 💑</p>
+      <p class="celebrate-sub">วันนี้คือจุดเริ่มต้นของเรา</p>
+      <div class="date-box" id="start-date"></div>
+      <button class="btn-primary" id="btn-restart">เริ่มใหม่ 🔄</button>
+    </div>
+  </section>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>
