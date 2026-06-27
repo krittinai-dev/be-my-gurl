@@ -288,6 +288,28 @@ body::after {
   background: #FFB3D9;
 }
 
+.letter-corner-deco {
+  font-size: 1rem;
+  letter-spacing: 4px;
+  color: var(--pink);
+  margin-bottom: 12px;
+  display: block;
+  text-align: right;
+}
+
+.wax-seal {
+  text-align: center;
+  font-size: 2.4rem;
+  margin: 4px 0 16px;
+  animation: bounce 2s ease-in-out infinite;
+  display: block;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50%       { transform: translateY(-6px) rotate(5deg); }
+}
+
 .letter-lines {
   font-family: 'Caveat', cursive;
   font-size: 1.3rem;
