@@ -5,14 +5,6 @@
 // ============================================================
 const CONFIG = {
   introText: 'ถึง ปลื้ม ที่ผมแอบชอบ...',
-  reasons: [
-    { icon: '😊', text: 'รอยยิ้มของปลื้มทำให้วันของผมดีขึ้นทุกวัน' },
-    { icon: '💫', text: 'ปลื้มน่ารักทั้งข้างนอกและข้างใน' },
-    { icon: '🤣', text: 'อยู่ด้วยกันแล้วสนุกและหัวเราะตลอด' },
-    { icon: '🤝', text: 'ปลื้มเป็นคนที่ไว้วางใจได้เสมอ' },
-    { icon: '✨', text: 'ปลื้มทำให้ผมอยากเป็นคนที่ดีขึ้น' },
-    { icon: '❤️', text: 'ผมชอบปลื้มในแบบที่ปลื้มเป็น' },
-  ],
   noEscapeMessages: [
     'อย่ากด! 🥺',
     'ไม่ได้นะ!! 😭',
@@ -75,27 +67,59 @@ function startTypewriter(targetId, text, callback) {
 
 document.getElementById('btn-next-intro').addEventListener('click', () => {
   showPage('page-reasons');
-  setupReasons();
+  setupLetter();
 });
 
 startTypewriter('intro-text', CONFIG.introText);
 
 // ============================================================
-// PAGE 2: REASONS
+// PAGE 2: LOVE LETTER
 // ============================================================
-function setupReasons() {
-  const list = document.getElementById('reasons-list');
-  list.innerHTML = '';
-  CONFIG.reasons.forEach(r => {
-    const li = document.createElement('li');
-    li.innerHTML = `<span class="reason-icon">${r.icon}</span><span>${r.text}</span>`;
-    list.appendChild(li);
-  });
-  // Stagger animation
-  const items = list.querySelectorAll('li');
-  items.forEach((item, i) => {
-    setTimeout(() => item.classList.add('visible'), i * 200 + 100);
-  });
+const LETTER_LINES = [
+  'ปลื้มที่รัก,',
+  '',
+  'มีบางอย่างที่ผมอยากบอกมานานแล้ว',
+  'ทุกครั้งที่เห็นปลื้ม ผมรู้สึกดีขึ้นเสมอ',
+  'รอยยิ้มของปลื้มมันทำให้วันธรรมดา',
+  'กลายเป็นวันพิเศษได้เลยนะ',
+  '',
+  'ผมชอบปลื้มในแบบที่ปลื้มเป็น',
+  'ไม่ต้องเปลี่ยนอะไรเลยสักนิด',
+  '',
+  'และวันนี้... ผมอยากถามปลื้มสักเรื่อง 🌹',
+];
+
+function setupLetter() {
+  const envelope = document.getElementById('letter-envelope');
+  const sheet = document.getElementById('letter-sheet');
+  const linesEl = document.getElementById('letter-lines');
+
+  // Add open hint
+  let hint = envelope.querySelector('.open-hint');
+  if (!hint) {
+    hint = document.createElement('p');
+    hint.className = 'open-hint';
+    hint.textContent = '👆 แตะเพื่อเปิดจดหมาย';
+    envelope.parentElement.insertBefore(hint, envelope.nextSibling);
+  }
+
+  envelope.addEventListener('click', function openLetter() {
+    envelope.classList.add('opening');
+    hint.style.display = 'none';
+    setTimeout(() => {
+      envelope.style.display = 'none';
+      sheet.style.display = 'block';
+      linesEl.innerHTML = '';
+      LETTER_LINES.forEach((line, i) => {
+        const span = document.createElement('span');
+        span.className = 'letter-line';
+        span.textContent = line || ' ';
+        linesEl.appendChild(span);
+        setTimeout(() => span.classList.add('show'), i * 220 + 100);
+      });
+    }, 700);
+    envelope.removeEventListener('click', openLetter);
+  }, { once: true });
 }
 
 document.getElementById('btn-next-reasons').addEventListener('click', () => {
@@ -211,6 +235,12 @@ document.getElementById('btn-restart').addEventListener('click', () => {
   hintEl.textContent = '';
   memeScream.classList.remove('show');
   document.getElementById('confetti-container').innerHTML = '';
+  // Reset letter
+  const envelope = document.getElementById('letter-envelope');
+  const sheet = document.getElementById('letter-sheet');
+  envelope.style.display = '';
+  envelope.classList.remove('opening');
+  sheet.style.display = 'none';
   showPage('page-intro');
   startTypewriter('intro-text', CONFIG.introText);
 });
