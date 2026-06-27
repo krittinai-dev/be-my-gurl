@@ -134,6 +134,8 @@ function setupLetter() {
     setTimeout(() => {
       envelope.style.display = 'none';
       sheet.style.display = 'block';
+      document.getElementById('page-reasons').classList.add('scroll-top');
+      document.getElementById('page-reasons').scrollTop = 0;
       linesEl.innerHTML = '';
       LETTER_LINES.forEach((line, i) => {
         const span = document.createElement('span');

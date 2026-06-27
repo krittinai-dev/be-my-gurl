@@ -87,6 +87,12 @@ body::after {
 }
 .page.active { display: flex; }
 
+/* หน้าที่เนื้อหายาว — เริ่มจากบนแทน center */
+.page.active.scroll-top {
+  align-items: flex-start;
+  padding-top: 40px;
+}
+
 /* ============ CARD ============ */
 .card {
   background: var(--white);
