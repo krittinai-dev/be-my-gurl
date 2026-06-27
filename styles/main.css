@@ -505,6 +505,49 @@ h2 {
   50%       { opacity: 0.25; transform: scale(1.05); }
 }
 
+/* ============ YOUTUBE PLAYER ============ */
+#yt-player-wrap {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+#music-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: rgba(255,255,255,0.85);
+  border: 2px solid var(--pink-light);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(255,107,138,0.3);
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+#music-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* ============ QUESTION CONTEXT ============ */
+.question-context {
+  font-size: 0.95rem;
+  color: #999;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 480px) {
   .card {

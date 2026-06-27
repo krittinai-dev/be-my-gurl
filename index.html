@@ -3,11 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ปลื้ม — จะเป็นแฟนผมไหม? 💕</title>
+  <title>ถึง pluem 💕</title>
   <link rel="stylesheet" href="styles/main.css" />
 </head>
 <body>
   <div id="hearts-container"></div>
+
+  <!-- YouTube Music Player (hidden) -->
+  <div id="yt-player-wrap">
+    <iframe id="yt-player"
+      src="https://www.youtube.com/embed/ytVyf_82lC0?enablejsapi=1&autoplay=0&loop=1&playlist=ytVyf_82lC0&controls=0&mute=0"
+      allow="autoplay; encrypted-media"
+      frameborder="0">
+    </iframe>
+  </div>
+  <button id="music-toggle" title="เปิด/ปิดเพลง">🎵</button>
 
   <!-- Page 1: Intro -->
   <section id="page-intro" class="page active">
@@ -30,7 +40,7 @@
       <div class="letter-inner">
         <img src="assets/shy-boy.jpeg" alt="อายจัง" class="meme-img meme-shy meme-letter" />
         <div class="letter-lines" id="letter-lines"></div>
-        <div class="letter-sig">ด้วยรัก,<br/><span class="sig-name">คนที่แอบชอบปลื้ม 💕</span></div>
+        <div class="letter-sig">รัก,<br/><span class="sig-name">ปาล์มสุดหล่อ 💕</span></div>
         <button class="btn-primary" id="btn-next-reasons">ต่อไป →</button>
       </div>
     </div>
@@ -40,14 +50,14 @@
   <section id="page-question" class="page">
     <div class="card question-card">
       <div class="emoji-big">🌹</div>
-      <h1 class="question-text">ปลื้ม<br/>จะเป็นแฟนผมไหม?</h1>
+      <p class="question-context">หนูเคยบอกว่าอยากเป็นแฟนกัน<br/>แต่ยังไม่พร้อม...</p>
+      <h1 class="question-text">ตอนนี้<br/>เป็นแฟนกันใหม่ไหม pluem? 💕</h1>
       <div class="btn-group">
-        <button class="btn-yes" id="btn-yes">ใช่!! 💕</button>
-        <button class="btn-no" id="btn-no">ไม่ใช่</button>
+        <button class="btn-yes" id="btn-yes">ได้เลย!! 💕</button>
+        <button class="btn-no" id="btn-no">ยังไม่พร้อม</button>
       </div>
       <p class="hint" id="no-hint"></p>
     </div>
-    <!-- Scream meme — ปรากฏเมื่อ No วิ่งหนี -->
     <img src="assets/scream-guy.jpeg" alt="กรีดร้อง" class="meme-img meme-scream" id="meme-scream" />
   </section>
 
@@ -57,9 +67,9 @@
     <img src="assets/love-explosion.jpeg" alt="love explosion" class="meme-bg-celebrate" />
     <div class="card celebrate-card">
       <div class="emoji-big celebrate-emoji">🎉</div>
-      <h1>ยินดีด้วย!! 🎊</h1>
-      <p class="celebrate-text">เราเป็นแฟนกันแล้วนะ ปลื้ม 💑</p>
-      <p class="celebrate-sub">วันนี้คือจุดเริ่มต้นของเรา</p>
+      <h1>เราเป็นแฟนกันแล้ว!! 🎊</h1>
+      <p class="celebrate-text">ขอบคุณที่ให้โอกาสพี่นะ pluem 💑</p>
+      <p class="celebrate-sub">วันนี้คือวันแรกของเรา</p>
       <div class="date-box" id="start-date"></div>
       <button class="btn-primary" id="btn-restart">เริ่มใหม่ 🔄</button>
     </div>

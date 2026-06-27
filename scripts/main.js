@@ -4,15 +4,44 @@
 // CONFIG — แก้ได้เลยครับ
 // ============================================================
 const CONFIG = {
-  introText: 'ถึง ปลื้ม ที่ผมแอบชอบ...',
+  introText: 'ถึง pluem 💕',
   noEscapeMessages: [
-    'อย่ากด! 🥺',
-    'ไม่ได้นะ!! 😭',
-    'วิ่งไม่ทันหรอก 😤',
-    'กดใช่เถอะนะ~ 🙏',
-    'ปลื้มโหดมาก!! 😱',
+    'อย่ากดเลยนะ 🥺',
+    'ยังไม่พร้อมก็ได้ แต่ลองดูก่อนได้ไหม 😭',
+    'กดได้เลย กดซ้ายได้เลย 😤',
+    'pluem~ กด "ได้เลย" เถอะนะ 🙏',
+    'ปาล์มรอนะ!! 😱',
   ],
 };
+
+// ============================================================
+// YOUTUBE MUSIC
+// ============================================================
+let musicPlaying = false;
+const ytPlayer = document.getElementById('yt-player');
+const musicBtn = document.getElementById('music-toggle');
+
+function playMusic() {
+  ytPlayer.src = ytPlayer.src.replace('autoplay=0', 'autoplay=1');
+  musicPlaying = true;
+  musicBtn.textContent = '🔇';
+}
+
+musicBtn.addEventListener('click', () => {
+  if (!musicPlaying) {
+    playMusic();
+  } else {
+    // mute/unmute via src swap trick
+    const muted = ytPlayer.src.includes('mute=1');
+    if (muted) {
+      ytPlayer.src = ytPlayer.src.replace('mute=1', 'mute=0');
+      musicBtn.textContent = '🔇';
+    } else {
+      ytPlayer.src = ytPlayer.src.replace('mute=0', 'mute=1');
+      musicBtn.textContent = '🎵';
+    }
+  }
+});
 
 // ============================================================
 // HEARTS — หัวใจปลิว
@@ -66,6 +95,7 @@ function startTypewriter(targetId, text, callback) {
 }
 
 document.getElementById('btn-next-intro').addEventListener('click', () => {
+  playMusic();
   showPage('page-reasons');
   setupLetter();
 });
@@ -76,17 +106,17 @@ startTypewriter('intro-text', CONFIG.introText);
 // PAGE 2: LOVE LETTER
 // ============================================================
 const LETTER_LINES = [
-  'ปลื้มที่รัก,',
+  'pluem ที่รัก,',
   '',
-  'มีบางอย่างที่ผมอยากบอกมานานแล้ว',
-  'ทุกครั้งที่เห็นปลื้ม ผมรู้สึกดีขึ้นเสมอ',
-  'รอยยิ้มของปลื้มมันทำให้วันธรรมดา',
-  'กลายเป็นวันพิเศษได้เลยนะ',
+  'หนูเคยบอกว่ายังไม่เป็นแฟน',
+  'ไม่ขอเป็นแฟนสักที...',
   '',
-  'ผมชอบปลื้มในแบบที่ปลื้มเป็น',
-  'ไม่ต้องเปลี่ยนอะไรเลยสักนิด',
+  'พี่มีไรจะบอก',
   '',
-  'และวันนี้... ผมอยากถามปลื้มสักเรื่อง 🌹',
+  'พี่รักหนูนะ',
+  'รักจริงๆ ไม่ได้แกล้งทำ',
+  '',
+  'และวันนี้พี่อยากถามหนูสักเรื่อง 🌹',
 ];
 
 function setupLetter() {
@@ -94,14 +124,14 @@ function setupLetter() {
   const sheet = document.getElementById('letter-sheet');
   const linesEl = document.getElementById('letter-lines');
 
-  // Add open hint
-  let hint = envelope.querySelector('.open-hint');
+  let hint = envelope.parentElement.querySelector('.open-hint');
   if (!hint) {
     hint = document.createElement('p');
     hint.className = 'open-hint';
     hint.textContent = '👆 แตะเพื่อเปิดจดหมาย';
     envelope.parentElement.insertBefore(hint, envelope.nextSibling);
   }
+  hint.style.display = '';
 
   envelope.addEventListener('click', function openLetter() {
     envelope.classList.add('opening');
@@ -113,12 +143,11 @@ function setupLetter() {
       LETTER_LINES.forEach((line, i) => {
         const span = document.createElement('span');
         span.className = 'letter-line';
-        span.textContent = line || ' ';
+        span.textContent = line || ' ';
         linesEl.appendChild(span);
         setTimeout(() => span.classList.add('show'), i * 220 + 100);
       });
     }, 700);
-    envelope.removeEventListener('click', openLetter);
   }, { once: true });
 }
 
@@ -141,7 +170,6 @@ function runNoButton() {
   const msg = CONFIG.noEscapeMessages[Math.min(noCount - 1, CONFIG.noEscapeMessages.length - 1)];
   hintEl.textContent = msg;
 
-  // Make button run away
   const maxX = window.innerWidth - 160;
   const maxY = window.innerHeight - 80;
   const randomX = Math.floor(Math.random() * maxX);
@@ -153,7 +181,6 @@ function runNoButton() {
   btnNo.style.transition = 'left 0.25s ease, top 0.25s ease';
   btnNo.style.zIndex = '999';
 
-  // Show scream meme
   memeScream.classList.add('show');
   if (screamTimeout) clearTimeout(screamTimeout);
   screamTimeout = setTimeout(() => memeScream.classList.remove('show'), 1800);
@@ -161,32 +188,12 @@ function runNoButton() {
 
 btnNo.addEventListener('mouseover', runNoButton);
 
-// Touch support — move button on touchstart
 btnNo.addEventListener('touchstart', (e) => {
   e.preventDefault();
-  noCount++;
-  const msg = CONFIG.noEscapeMessages[Math.min(noCount - 1, CONFIG.noEscapeMessages.length - 1)];
-  hintEl.textContent = msg;
-
-  const maxX = window.innerWidth - 120;
-  const maxY = window.innerHeight - 80;
-  const randomX = Math.floor(Math.random() * maxX);
-  const randomY = Math.floor(Math.random() * Math.max(maxY, 100));
-
-  btnNo.style.position = 'fixed';
-  btnNo.style.left = randomX + 'px';
-  btnNo.style.top = randomY + 'px';
-  btnNo.style.transition = 'left 0.25s ease, top 0.25s ease';
-  btnNo.style.zIndex = '999';
-
-  // Show scream meme
-  memeScream.classList.add('show');
-  if (screamTimeout) clearTimeout(screamTimeout);
-  screamTimeout = setTimeout(() => memeScream.classList.remove('show'), 1800);
+  runNoButton();
 }, { passive: false });
 
 btnYes.addEventListener('click', () => {
-  // Reset no button position
   btnNo.style.position = '';
   btnNo.style.left = '';
   btnNo.style.top = '';
@@ -235,7 +242,6 @@ document.getElementById('btn-restart').addEventListener('click', () => {
   hintEl.textContent = '';
   memeScream.classList.remove('show');
   document.getElementById('confetti-container').innerHTML = '';
-  // Reset letter
   const envelope = document.getElementById('letter-envelope');
   const sheet = document.getElementById('letter-sheet');
   envelope.style.display = '';
