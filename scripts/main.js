@@ -223,6 +223,17 @@ function startCelebration() {
   launchConfetti();
   setTimeout(launchConfetti, 1500);
 
+  const video = document.getElementById('celebrate-video');
+  const soundBtn = document.getElementById('video-sound-btn');
+  if (video) {
+    video.muted = true;
+    video.play().catch(() => {});
+    soundBtn.addEventListener('click', () => {
+      video.muted = !video.muted;
+      soundBtn.textContent = video.muted ? '🔇' : '🔊';
+    });
+  }
+
   const dateBox = document.getElementById('start-date');
   const now = new Date();
   const opts = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
