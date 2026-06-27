@@ -117,6 +117,15 @@ body::after {
   box-shadow: 0 0 0 6px #FF3CAC18;
 }
 
+.site-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 16px;
+}
+
 .intro-label {
   font-size: 0.82rem;
   font-weight: 500;
