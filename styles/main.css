@@ -117,6 +117,12 @@ body::after {
   box-shadow: 0 0 0 6px #FF3CAC18;
 }
 
+#page-intro {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .intro-wrap {
   display: flex;
   flex-direction: column;
@@ -126,9 +132,9 @@ body::after {
 }
 
 .site-title {
-  font-size: 3rem;
+  font-size: 3.4rem;
   font-weight: 900;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--black);
   margin-bottom: 20px;
   text-align: center;
@@ -137,6 +143,18 @@ body::after {
 
 .site-title span {
   color: var(--pink);
+  position: relative;
+  display: inline-block;
+}
+
+.site-title span::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -4px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--pink), var(--pink-mid));
 }
 
 .intro-label {
