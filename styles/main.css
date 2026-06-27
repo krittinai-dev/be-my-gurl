@@ -152,6 +152,19 @@ body::after {
 @keyframes blink { 50% { opacity: 0; } }
 
 /* ============ PAGE 2: LETTER ============ */
+.page-letter {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter-center-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .letter-envelope {
   position: relative;
   width: 260px;

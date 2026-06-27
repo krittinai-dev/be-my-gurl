@@ -9,15 +9,9 @@
 <body>
   <div id="hearts-container"></div>
 
-  <!-- YouTube Music Player (hidden) -->
-  <div id="yt-player-wrap">
-    <iframe id="yt-player"
-      src="https://www.youtube.com/embed/ytVyf_82lC0?enablejsapi=1&autoplay=0&loop=1&playlist=ytVyf_82lC0&controls=0&mute=0"
-      allow="autoplay; encrypted-media"
-      frameborder="0">
-    </iframe>
-  </div>
-  <button id="music-toggle" title="เปิด/ปิดเพลง">🎵</button>
+  <!-- YouTube Music Player (hidden, loaded lazily on tap) -->
+  <div id="yt-player-wrap"></div>
+  <button id="music-toggle" title="แตะเพื่อเปิดเพลง">🎵</button>
 
   <!-- Page 1: Intro -->
   <section id="page-intro" class="page active">
@@ -31,11 +25,13 @@
   </section>
 
   <!-- Page 2: Love Letter -->
-  <section id="page-reasons" class="page">
-    <div class="letter-envelope" id="letter-envelope">
-      <div class="envelope-flap"></div>
-      <div class="envelope-body">
-        <div class="envelope-heart">💌</div>
+  <section id="page-reasons" class="page page-letter">
+    <div class="letter-center-wrap">
+      <div class="letter-envelope" id="letter-envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+          <div class="envelope-heart">💌</div>
+        </div>
       </div>
     </div>
     <div class="letter-sheet" id="letter-sheet">

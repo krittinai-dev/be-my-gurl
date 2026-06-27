@@ -15,32 +15,33 @@ const CONFIG = {
 };
 
 // ============================================================
-// YOUTUBE MUSIC
+// YOUTUBE MUSIC — โหลด iframe ตอน user แตะเพื่อแก้ autoplay block
 // ============================================================
 let musicPlaying = false;
-const ytPlayer = document.getElementById('yt-player');
 const musicBtn = document.getElementById('music-toggle');
 
-function playMusic() {
-  ytPlayer.src = ytPlayer.src.replace('autoplay=0', 'autoplay=1');
+function startMusic() {
+  const wrap = document.getElementById('yt-player-wrap');
+  wrap.innerHTML = '';
+  const iframe = document.createElement('iframe');
+  iframe.src = 'https://www.youtube.com/embed/ytVyf_82lC0?autoplay=1&loop=1&playlist=ytVyf_82lC0&controls=0';
+  iframe.setAttribute('allow', 'autoplay; encrypted-media');
+  iframe.frameBorder = '0';
+  wrap.appendChild(iframe);
   musicPlaying = true;
   musicBtn.textContent = '🔇';
+  musicBtn.title = 'ปิดเพลง';
+}
+
+function stopMusic() {
+  document.getElementById('yt-player-wrap').innerHTML = '';
+  musicPlaying = false;
+  musicBtn.textContent = '🎵';
+  musicBtn.title = 'เปิดเพลง';
 }
 
 musicBtn.addEventListener('click', () => {
-  if (!musicPlaying) {
-    playMusic();
-  } else {
-    // mute/unmute via src swap trick
-    const muted = ytPlayer.src.includes('mute=1');
-    if (muted) {
-      ytPlayer.src = ytPlayer.src.replace('mute=1', 'mute=0');
-      musicBtn.textContent = '🔇';
-    } else {
-      ytPlayer.src = ytPlayer.src.replace('mute=0', 'mute=1');
-      musicBtn.textContent = '🎵';
-    }
-  }
+  if (!musicPlaying) startMusic(); else stopMusic();
 });
 
 // ============================================================
@@ -95,7 +96,6 @@ function startTypewriter(targetId, text, callback) {
 }
 
 document.getElementById('btn-next-intro').addEventListener('click', () => {
-  playMusic();
   showPage('page-reasons');
   setupLetter();
 });
@@ -116,7 +116,7 @@ const LETTER_LINES = [
   'พี่รักหนูนะ',
   'รักจริงๆ ไม่ได้แกล้งทำ',
   '',
-  'และวันนี้พี่อยากถามหนูสักเรื่อง 🌹',
+  'และวันนี้พี่มีอะไรอยากถาม 🌹',
 ];
 
 function setupLetter() {
