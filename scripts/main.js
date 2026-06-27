@@ -99,7 +99,7 @@ startTypewriter('intro-text', CONFIG.introText);
 // PAGE 2: LOVE LETTER
 // ============================================================
 const LETTER_LINES = [
-  'pluem ที่รัก,',
+  'pluem,',
   '',
   'หนูเคยบอกว่ายังไม่เป็นแฟน',
   'ไม่ขอเป็นแฟนสักที...',
