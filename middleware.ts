@@ -1,5 +1,8 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import { SESSION_COOKIE } from '@/lib/constants';
+
+// inline ตรงนี้เลย (อย่า import ข้ามไฟล์ — Edge runtime ของ Vercel bundle แล้วพัง)
+// ต้องตรงกับ SESSION_COOKIE ใน lib/constants.ts
+const SESSION_COOKIE = 'album_session';
 
 // กันหน้า /album ให้เฉพาะคนที่ใส่รหัสถูก (มี cookie ตรงกับ SESSION_SECRET)
 export function middleware(request: NextRequest) {

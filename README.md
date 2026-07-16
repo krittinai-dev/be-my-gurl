@@ -57,8 +57,14 @@ npm run dev
 Deploy ฟรีบน [Vercel](https://vercel.com):
 1. push โค้ดขึ้น GitHub
 2. Import repo ใน Vercel
-3. ใส่ Environment Variables 3 ตัวเดียวกับ `.env.local`
+3. ใส่ **Environment Variables ครบ 4 ตัว** เหมือนใน `.env.local`:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+   - `ALBUM_PASSWORD`
+   - `SESSION_SECRET`
 4. Deploy — ได้ลิงก์เว็บส่งให้แฟนเปิดได้เลย 💕
+
+> ถ้า deploy แล้วเข้า /album ไม่ได้ (เด้งกลับ login ตลอด) ให้เช็คว่าใส่ `SESSION_SECRET` กับ `ALBUM_PASSWORD` ใน Vercel ครบ
 
 ## โครงสร้าง
 
