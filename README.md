@@ -78,5 +78,5 @@ app/
 │   └── actions.ts    ← upload / delete / logout
 lib/supabase/         ← client / server / middleware
 supabase/schema.sql   ← ตาราง + storage + RLS
-middleware.ts         ← กันหน้า /album ให้เฉพาะคนล็อกอิน.
+middleware.ts         ← กันหน้า /album ให้เฉพาะคนล็อกอิน
 ```
