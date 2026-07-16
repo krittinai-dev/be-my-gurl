@@ -94,9 +94,62 @@
       </div>
       <h1 class="celebrate-title">เป็นแฟนกัน<br/>แล้วนะ</h1>
       <div class="date-box" id="start-date"></div>
+      <button class="btn-gallery" id="btn-open-gallery">📸 อัลบั้มเที่ยวด้วยกัน</button>
       <button class="btn-primary" id="btn-restart">เริ่มใหม่</button>
     </div>
   </section>
+
+  <!-- Page 5: Gallery Calendar -->
+  <section id="page-gallery" class="page">
+    <div class="gallery-wrap">
+      <div class="gallery-head">
+        <button class="gallery-back" id="btn-gallery-back">‹ กลับ</button>
+        <div class="gallery-badge">💞 ความทรงจำของเรา</div>
+      </div>
+
+      <div class="cal-nav">
+        <button class="cal-arrow" id="cal-prev" title="เดือนก่อน">‹</button>
+        <div class="cal-month" id="cal-month">—</div>
+        <button class="cal-arrow" id="cal-next" title="เดือนถัดไป">›</button>
+      </div>
+
+      <div class="cal-weekdays">
+        <span>อา</span><span>จ</span><span>อ</span><span>พ</span><span>พฤ</span><span>ศ</span><span>ส</span>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+
+      <p class="cal-hint" id="cal-hint">👆 แตะวันที่มีรูป เพื่อดูความทรงจำ</p>
+    </div>
+  </section>
+
+  <!-- Password gate (soft lock) -->
+  <div id="pin-overlay" class="pin-overlay">
+    <div class="pin-box">
+      <div class="pin-emoji">🔒💕</div>
+      <p class="pin-title">ใส่รหัสของเรา</p>
+      <p class="pin-sub">อัลบั้มนี้ดูกันแค่เราสองคนนะ</p>
+      <input id="pin-input" class="pin-input" type="password" inputmode="numeric"
+        maxlength="8" placeholder="• • • •" autocomplete="off" />
+      <p class="pin-error" id="pin-error"></p>
+      <div class="pin-actions">
+        <button class="btn-no pin-cancel" id="pin-cancel">ยกเลิก</button>
+        <button class="btn-yes pin-ok" id="pin-ok">เปิดเลย 💕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <button class="lb-close" id="lb-close">✕</button>
+    <button class="lb-arrow lb-prev" id="lb-prev">‹</button>
+    <div class="lb-stage">
+      <img id="lb-img" class="lb-img" src="" alt="" />
+      <div class="lb-caption" id="lb-caption"></div>
+      <div class="lb-date" id="lb-date"></div>
+      <div class="lb-dots" id="lb-dots"></div>
+    </div>
+    <button class="lb-arrow lb-next" id="lb-next">›</button>
+  </div>
 
   <script src="scripts/main.js"></script>
 </body>
